@@ -37,3 +37,11 @@ build-mingw/
 *vscode*
 .idea/
 cmake-build-*/
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/doctest/v16/ipch/AutoPCH
+/.vs/doctest/v16/Browse.VC.opendb
+/.vs/doctest/v16/Browse.VC.db
+/.vs/doctest/v16/.suo
+/examples/executable_dll_and_plugin/.vs

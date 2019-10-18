@@ -1,15 +1,23 @@
 add_library(implementation SHARED implementation.cpp implementation_2.cpp)
 target_link_libraries(implementation PUBLIC doctest)
 
-add_library(dll SHARED dll.cpp)
+add_library(implementationB SHARED implementationB.cpp implementationB_2.cpp)
+target_link_libraries(implementationB implementation)
+
+add_library(dll SHARED dll.cpp dll2.cpp)
 target_link_libraries(dll implementation)
+
+add_library(dllB SHARED dllB.cpp dllB2.cpp)
+target_link_libraries(dllB implementation)
 
 add_library(plugin SHARED plugin.cpp)
 target_link_libraries(plugin implementation)
 
 add_executable(executable_dll_and_plugin main.cpp)
 target_link_libraries(executable_dll_and_plugin dll)
+target_link_libraries(executable_dll_and_plugin dllB)
 target_link_libraries(executable_dll_and_plugin implementation)
+target_link_libraries(executable_dll_and_plugin implementationB)
 
 if(NOT WIN32)
     target_link_libraries(executable_dll_and_plugin dl)
@@ -20,7 +28,9 @@ add_dependencies(executable_dll_and_plugin plugin)
 
 # group them together in a single folder inside IDEs
 set_target_properties(implementation PROPERTIES FOLDER executable_dll_and_plugin)
+set_target_properties(implementationB PROPERTIES FOLDER executable_dll_and_plugin)
 set_target_properties(dll PROPERTIES FOLDER executable_dll_and_plugin)
+set_target_properties(dllB PROPERTIES FOLDER executable_dll_and_plugin)
 set_target_properties(plugin PROPERTIES FOLDER executable_dll_and_plugin)
 set_target_properties(executable_dll_and_plugin PROPERTIES FOLDER executable_dll_and_plugin)
 
